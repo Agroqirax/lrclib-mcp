@@ -57,12 +57,37 @@ function stripLyricsFile(data) {
 }
 
 function textResult(data) {
+  const stripped = stripLyricsFile(data);
+  const structuredContent = Array.isArray(stripped)
+    ? { results: stripped }
+    : stripped;
   return {
     content: [
-      { type: "text", text: JSON.stringify(stripLyricsFile(data), null, 2) },
+      { type: "text", text: JSON.stringify(structuredContent, null, 2) },
     ],
+    structuredContent,
   };
 }
+
+const lyricsRecordShape = {
+  id: z.int().describe("Track ID"),
+  name: z.string().describe("Name"),
+  trackName: z.string().describe("Track name"),
+  artistName: z.string().describe("Artist name"),
+  albumName: z.string().describe("Album name"),
+  duration: z.number().nullable().describe("Duration in seconds"),
+  instrumental: z.boolean().describe("Is instrumental"),
+  plainLyrics: z
+    .string()
+    .nullable()
+    .describe("Lyrics without timestamps (null for instrumental tracks)"),
+  syncedLyrics: z
+    .string()
+    .nullable()
+    .describe(
+      "Lyrics with timestamps (null for instrumental tracks or when unavailable)",
+    ),
+};
 
 const server = new McpServer({
   name: "lrclib-mcp",
@@ -89,6 +114,7 @@ server.registerTool(
           "Track duration in seconds (optional, but recommended for exact match)",
         ),
     },
+    outputSchema: lyricsRecordShape,
     annotations: {
       readOnlyHint: true,
       destructiveHint: false,
@@ -116,6 +142,7 @@ server.registerTool(
     inputSchema: {
       id: z.union([z.string(), z.number()]).describe("The lyrics record ID"),
     },
+    outputSchema: lyricsRecordShape,
     annotations: {
       readOnlyHint: true,
       destructiveHint: false,
@@ -145,6 +172,11 @@ server.registerTool(
       track_name: z.string().optional().describe("Filter by track title"),
       artist_name: z.string().optional().describe("Filter by artist name"),
       album_name: z.string().optional().describe("Filter by album name"),
+    },
+    outputSchema: {
+      results: z
+        .array(z.object(lyricsRecordShape))
+        .describe("Matching lyrics records (may be empty)"),
     },
     annotations: {
       readOnlyHint: true,
