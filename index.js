@@ -5,7 +5,8 @@ import { z } from "zod";
 
 const API_BASE = process.env.LRCLIB_API_BASE || "https://lrclib.net/api";
 const USER_AGENT =
-  process.env.LRCLIB_USER_AGENT || "lrclib-mcp/1.0.0 (+https://lrclib.net/docs)";
+  process.env.LRCLIB_USER_AGENT ||
+  "lrclib-mcp/1.0.0 (+https://github.com/agroqirax/lrclib-mcp)";
 
 async function lrclibFetch(path, params) {
   const url = new URL(API_BASE + path);
@@ -68,7 +69,7 @@ server.registerTool(
         .number()
         .optional()
         .describe(
-          "Track duration in seconds (optional, but recommended for exact match)"
+          "Track duration in seconds (optional, but recommended for exact match)",
         ),
     },
   },
@@ -80,7 +81,7 @@ server.registerTool(
       duration,
     });
     return textResult(data);
-  }
+  },
 );
 
 server.registerTool(
@@ -96,7 +97,7 @@ server.registerTool(
   async ({ id }) => {
     const data = await lrclibFetch(`/get/${encodeURIComponent(id)}`);
     return textResult(data);
-  }
+  },
 );
 
 server.registerTool(
@@ -110,7 +111,7 @@ server.registerTool(
         .string()
         .optional()
         .describe(
-          "Generic search query, matched against track title, artist name, and album name"
+          "Generic search query, matched against track title, artist name, and album name",
         ),
       track_name: z.string().optional().describe("Filter by track title"),
       artist_name: z.string().optional().describe("Filter by artist name"),
@@ -120,7 +121,7 @@ server.registerTool(
   async ({ q, track_name, artist_name, album_name }) => {
     if (!q && !track_name && !artist_name && !album_name) {
       throw new Error(
-        "At least one of q, track_name, artist_name, or album_name must be provided"
+        "At least one of q, track_name, artist_name, or album_name must be provided",
       );
     }
     const data = await lrclibFetch("/search", {
@@ -130,7 +131,7 @@ server.registerTool(
       album_name,
     });
     return textResult(data);
-  }
+  },
 );
 
 const transport = new StdioServerTransport();

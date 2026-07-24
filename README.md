@@ -51,7 +51,7 @@ Example client config (e.g. Claude Code / Claude Desktop `mcpServers`):
       "args": ["-y", "git+https://github.com/agroqirax/lrclib-mcp.git"],
       "env": {
         "LRCLIB_API_BASE": "https://lrclib.net/api",
-        "LRCLIB_USER_AGENT": "lrclib-mcp/1.0.0 (+https://lrclib.net/docs)"
+        "LRCLIB_USER_AGENT": "lrclib-mcp/1.0.0 (+https://github.com/agroqirax/lrclib-mcp)"
       }
     }
   }
@@ -68,7 +68,7 @@ Or, if running from a local clone:
       "args": ["./index.js"],
       "env": {
         "LRCLIB_API_BASE": "https://lrclib.net/api",
-        "LRCLIB_USER_AGENT": "lrclib-mcp/1.0.0 (+https://lrclib.net/docs)"
+        "LRCLIB_USER_AGENT": "lrclib-mcp/1.0.0 (+https://github.com/agroqirax/lrclib-mcp)"
       }
     }
   }
@@ -79,10 +79,10 @@ Or, if running from a local clone:
 
 Both are optional and fall back to sane defaults:
 
-| Variable            | Default                                       | Purpose                                      |
-| ------------------- | --------------------------------------------- | -------------------------------------------- |
-| `LRCLIB_API_BASE`   | `https://lrclib.net/api`                      | Override the API base URL                    |
-| `LRCLIB_USER_AGENT` | `lrclib-mcp/1.0.0 (+https://lrclib.net/docs)` | Override the `User-Agent` sent to lrclib.net |
+| Variable            | Default                                                       | Purpose                                      |
+| ------------------- | ------------------------------------------------------------- | -------------------------------------------- |
+| `LRCLIB_API_BASE`   | `https://lrclib.net/api`                                      | Override the API base URL                    |
+| `LRCLIB_USER_AGENT` | `lrclib-mcp/1.0.0 (+https://github.com/agroqirax/lrclib-mcp)` | Override the `User-Agent` sent to lrclib.net |
 
 ## License
 

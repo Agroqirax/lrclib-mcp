@@ -5,7 +5,7 @@
       "args": ["-y", "git+https://github.com/agroqirax/lrclib-mcp.git"],
       "env": {
         "LRCLIB_API_BASE": "https://lrclib.net/api",
-        "LRCLIB_USER_AGENT": "lrclib-mcp/1.0.0 (+https://lrclib.net/docs)"
+        "LRCLIB_USER_AGENT": "lrclib-mcp/1.0.0 (+https://github.com/agroqirax/lrclib-mcp)"
       }
     }
   }
