@@ -19,7 +19,11 @@ async function lrclibFetch(path, params) {
   }
 
   const res = await fetch(url, {
-    headers: { "User-Agent": USER_AGENT },
+    headers: {
+      "User-Agent": USER_AGENT,
+      "X-User-Agent": USER_AGENT,
+      "Lrclib-Client": USER_AGENT,
+    },
   });
 
   const text = await res.text();
