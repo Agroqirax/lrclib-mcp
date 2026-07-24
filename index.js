@@ -89,6 +89,12 @@ server.registerTool(
           "Track duration in seconds (optional, but recommended for exact match)",
         ),
     },
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   },
   async ({ track_name, artist_name, album_name, duration }) => {
     const data = await lrclibFetch("/get", {
@@ -109,6 +115,12 @@ server.registerTool(
       "Get a specific lyrics record from lrclib.net by its numeric record ID, e.g. an ID returned from a previous search_lyrics call.",
     inputSchema: {
       id: z.union([z.string(), z.number()]).describe("The lyrics record ID"),
+    },
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
     },
   },
   async ({ id }) => {
@@ -133,6 +145,12 @@ server.registerTool(
       track_name: z.string().optional().describe("Filter by track title"),
       artist_name: z.string().optional().describe("Filter by artist name"),
       album_name: z.string().optional().describe("Filter by album name"),
+    },
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
     },
   },
   async ({ q, track_name, artist_name, album_name }) => {
