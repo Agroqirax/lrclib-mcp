@@ -1,0 +1,19 @@
+{
+  "name": "lrclib-mcp",
+  "version": "1.0.0",
+  "description": "Stdio MCP server for the lrclib.net lyrics API",
+  "main": "index.js",
+  "bin": {
+    "lrclib-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  }
+}
