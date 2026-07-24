@@ -41,9 +41,22 @@ async function lrclibFetch(path, params) {
   return body;
 }
 
+function stripLyricsFile(data) {
+  if (Array.isArray(data)) {
+    return data.map(stripLyricsFile);
+  }
+  if (data && typeof data === "object") {
+    const { lyricsfile, ...rest } = data;
+    return rest;
+  }
+  return data;
+}
+
 function textResult(data) {
   return {
-    content: [{ type: "text", text: JSON.stringify(data, null, 2) }],
+    content: [
+      { type: "text", text: JSON.stringify(stripLyricsFile(data), null, 2) },
+    ],
   };
 }
 
