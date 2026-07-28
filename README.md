@@ -58,23 +58,6 @@ Example client config (e.g. Claude Code / Claude Desktop `mcpServers`):
 }
 ```
 
-Or, if running from a local clone:
-
-```json
-{
-  "mcpServers": {
-    "lrclib": {
-      "command": "node",
-      "args": ["./index.js"],
-      "env": {
-        "LRCLIB_API_BASE": "https://lrclib.net/api",
-        "LRCLIB_USER_AGENT": "lrclib-mcp/1.0.0 (+https://github.com/agroqirax/lrclib-mcp)"
-      }
-    }
-  }
-}
-```
-
 ## Environment variables
 
 Both are optional and fall back to sane defaults:
@@ -83,6 +66,10 @@ Both are optional and fall back to sane defaults:
 | ------------------- | ------------------------------------------------------------- | -------------------------------------------- |
 | `LRCLIB_API_BASE`   | `https://lrclib.net/api`                                      | Override the API base URL                    |
 | `LRCLIB_USER_AGENT` | `lrclib-mcp/1.0.0 (+https://github.com/agroqirax/lrclib-mcp)` | Override the `User-Agent` sent to lrclib.net |
+
+## Streamable HTTP
+
+Awaiting [lrclib#115](https://github.com/tranxuanthang/lrclib/pull/115) being merged
 
 ## License
 
