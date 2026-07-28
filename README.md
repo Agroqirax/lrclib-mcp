@@ -7,6 +7,8 @@ Claude Code, Claude Desktop).
 Publishing lyrics (`/api/publish`) is intentionally not implemented — this
 server only supports looking up existing lyrics.
 
+The server communicates over stdio using the MCP protocol
+
 ## Tools
 
 - **get_lyrics** — `GET /api/get`
@@ -23,21 +25,6 @@ server only supports looking up existing lyrics.
 ## Requirements
 
 - Node.js 18+ (uses the built-in `fetch`)
-
-## Install
-
-```bash
-npm install
-```
-
-## Run
-
-```bash
-node index.js
-```
-
-The server communicates over stdio using the MCP protocol — it's meant to be
-launched by an MCP client, not run interactively.
 
 ## Configuring with an MCP client
 
